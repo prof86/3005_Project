@@ -2,7 +2,7 @@ Name: Ahmadou Gitteh.
 Name: Peng   Diao
 
 Downloading the psycopg2 from library.
-pip install psycopg2 
+pip install -r requirements.txt
 
 running the program:
 python main.py
