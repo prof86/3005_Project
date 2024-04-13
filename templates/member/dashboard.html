@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Links</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Member Dashboard</h1>
+        <ul>
+            <li><a href="{{ url_for('profile') }}">Profile</a></li>
+            <li><a href="{{ url_for('create_session') }}">Book Session</a></li>
+            <li><a href="{{ url_for('register_class') }}">Register to Class</a></li>
+            <li><a href="{{ url_for('exercises') }}">Exercise Routings</a></li>
+            <li><a href="{{ url_for('goals') }}">Fitness Goals</a></li>
+            <li><a href="{{ url_for('health_metrics') }}">Health Metrics</a></li>
+            <li><a href="{{ url_for('list_bills') }}">Bills</a></li>
+            <li><a href="{{ url_for('member_sessions') }}">Sessions</a></li>
+            <li><a href="{{ url_for('member_classes') }}">Classes</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goals</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom styles */
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        <h1>Goals</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Goal Type</th>
+                    <th>Target Value</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Progress</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for goal in goals %}
+                <tr>
+                    <td>{{ goal.goal_type }}</td>
+                    <td>{{ goal.target_value }}</td>
+                    <td>{{ goal.start_date }}</td>
+                    <td>{{ goal.end_date }}</td>
+                    <td>{{ goal.progress }}</td>
+                    <td>
+                        <a href="{{ url_for('update_goal', goal_id=goal.goal_id) }}" class="btn btn-primary btn-sm">Edit</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h2>Create New Goal</h2>
+        <form method="POST">
+            {{ csrf_token }}
+            <div class="form-group">
+                <label for="goal_type">Goal Type:</label>
+                <input type="text" class="form-control" id="goal_type" name="goal_type" required>
+            </div>
+            <div class="form-group">
+                <label for="target_value">Target Value:</label>
+                <input type="number" class="form-control" id="target_value" name="target_value" required>
+            </div>
+            <div class="form-group">
+                <label for="start_date">Start Date:</label>
+                <input type="date" class="form-control" id="start_date" name="start_date" required>
+            </div>
+            <div class="form-group">
+                <label for="end_date">End Date:</label>
+                <input type="date" class="form-control" id="end_date" name="end_date" required>
+            </div>
+            <button type="submit" class="btn btn-success">Create Goal</button>
+        </form>
+    </div>
+</body>
+</html>

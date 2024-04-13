@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom styles */
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .table-container {
+            margin-top: 20px;
+        }
+        .table-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table-container th, .table-container td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .table-container th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        <h1>User Information</h1>
+        
+        <!-- Health Metrics Table -->
+        <div class="table-container">
+            <h2>Health Metrics</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Weight</th>
+                        <th>Height</th>
+                        <th>Muscle %</th>
+                        <th>Fat %</th>
+                        <th>Systolic BP</th>
+                        <th>Diastolic BP</th>
+                        <th>Heart Rate</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for metric in health_metrics %}
+                        <tr>
+                            <td>{{ metric.date }}</td>
+                            <td>{{ metric.weight }}</td>
+                            <td>{{ metric.height }}</td>
+                            <td>{{ metric.muscle_percentage }}</td>
+                            <td>{{ metric.fat_percentage }}</td>
+                            <td>{{ metric.blood_pressure_systolic }}</td>
+                            <td>{{ metric.blood_pressure_diastolic }}</td>
+                            <td>{{ metric.resting_heart_rate }}</td>
+                            <td>{{ metric.notes }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Goals Table -->
+        <div class="table-container">
+            <h2>Goals</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Target Value</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Progress</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for goal in goals %}
+                        <tr>
+                            <td>{{ goal.goal_type }}</td>
+                            <td>{{ goal.target_value }}</td>
+                            <td>{{ goal.start_date }}</td>
+                            <td>{{ goal.end_date }}</td>
+                            <td>{{ goal.progress }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Exercise Routines Table -->
+        <div class="table-container">
+            <h2>Exercise Routines</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Muscle Group</th>
+                        <th>Reps</th>
+                        <th>Sets</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for exercise in exercises %}
+                        <tr>
+                            <td>{{ exercise.name }}</td>
+                            <td>{{ exercise.category }}</td>
+                            <td>{{ exercise.musclegroup }}</td>
+                            <td>{{ exercise.reps }}</td>
+                            <td>{{ exercise.sets }}</td>
+                            <td>{{ exercise.start_date }}</td>
+                            <td>{{ exercise.end_date }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</body>
+</html>

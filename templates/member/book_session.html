@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Book Session</title>
+    <style>
+        /* Custom styles */
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        <h1>Book Session</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    {% if "error" in message %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ message }}
+                        </div>
+                        {% else %}
+                        <div class="alert alert-success" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <h2>Trainers</h2>
+        <ul class="list-group mb-4">
+            {% for trainer in trainers %}
+            <li class="list-group-item">{{ trainer.first_name }} {{ trainer.last_name }}</li>
+            {% endfor %}
+        </ul>
+        <h2>Create New Session</h2>
+        <form method="post" class="mt-4">
+            <div class="form-group">
+                <label for="session_date">Session Date:</label>
+                <input type="date" class="form-control" id="session_date" name="session_date" required>
+            </div>
+            <div class="form-group">
+                <label for="session_time">Session Time:</label>
+                <input type="time" class="form-control" id="session_time" name="session_time" required>
+            </div>
+            <div class="form-group">
+                <label for="duration">Duration:</label>
+                <input type="text" class="form-control" id="duration" name="duration" required>
+            </div>
+            <div class="form-group">
+                <label for="trainer_id">Trainer:</label>
+                <select class="form-control" id="trainer_id" name="trainer_id" required>
+                    {% for trainer in trainers %}
+                    <option value="{{ trainer.user_id }}">{{ trainer.first_name }} {{ trainer.last_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Book Session</button>
+        </form>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

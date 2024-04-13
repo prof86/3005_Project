@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Bills</title>
+    <style>
+        /* Custom styles */
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .btn {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        <h1>Bills</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th>Bill ID</th>
+                    <th>Session ID</th>
+                    <th>Class Registration ID</th>
+                    <th>Price</th>
+                    <th>pay</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bill in bills %}
+                <tr>
+                    <td>{{ bill.bill_id }}</td>
+                    <td>{{ bill.classregistration_id }}</td>
+                    <td>{{ bill.price }}</td>
+                    <td>
+                        {% if bill.is_paid %}
+                            already paid
+                        {% else %}
+                            <form method="post" action="{{ url_for('pay_bill', bill_id=bill.bill_id) }}">
+                                <!-- <input type="hidden" name="bill_id" value="{{ bill.bill_id }}"> -->
+                                <input type="hidden" name="method" value="Credit">
+                                <button type="submit" class="btn btn-primary btn-sm">Pay with Credit</button>
+                            </form>
+                            
+                            <!-- Form 2: Debit -->
+                            <form method="post" action="{{ url_for('pay_bill', bill_id=bill.bill_id) }}">
+                                <!-- <input type="hidden" name="bill_id" value="{{ bill.bill_id }}"> -->
+                                <input type="hidden" name="method" value="Debit">
+                                <button type="submit" class="btn btn-primary btn-sm">Pay with Debit</button>
+                            </form>
+                            
+                            <!-- Form 3: Cash -->
+                            <form method="post" action="{{ url_for('pay_bill', bill_id=bill.bill_id) }}">
+                                <!-- <input type="hidden" name="bill_id" value="{{ bill.bill_id }}"> -->
+                                <input type="hidden" name="method" value="Cash">
+                                <button type="submit" class="btn btn-primary btn-sm">Pay with Cash</button>
+                            </form>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

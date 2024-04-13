@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Update Exercise</title>
+    <style>
+        /* Custom styles */
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .btn {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Update Exercise</h1>
+        <form method="post" class="mt-4">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{ exercise.name }}" required>
+            </div>
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <input type="text" class="form-control" id="category" name="category" value="{{ exercise.category }}" required>
+            </div>
+            <div class="form-group">
+                <label for="musclegroup">Muscle Group:</label>
+                <input type="text" class="form-control" id="musclegroup" name="musclegroup" value="{{ exercise.musclegroup }}" required>
+            </div>
+            <div class="form-group">
+                <label for="reps">Reps:</label>
+                <input type="number" class="form-control" id="reps" name="reps" value="{{ exercise.reps }}" required>
+            </div>
+            <div class="form-group">
+                <label for="sets">Sets:</label>
+                <input type="number" class="form-control" id="sets" name="sets" value="{{ exercise.sets }}" required>
+            </div>
+            <div class="form-group">
+                <label for="start_date">Start Date:</label>
+                <input type="date" class="form-control" id="start_date" name="start_date" value="{{ exercise.start_date }}" required>
+            </div>
+            <div class="form-group">
+                <label for="end_date">End Date:</label>
+                <input type="date" class="form-control" id="end_date" name="end_date" value="{{ exercise.end_date }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Exercise</button>
+        </form>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

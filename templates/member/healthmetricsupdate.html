@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Health Metric</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        /* Add your custom styles here */
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Update Health Metric</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" class="form-control" id="date" name="date" value="{{ health_metric.date }}" required>
+            </div>
+            <div class="form-group">
+                <label for="weight">Weight (kg)</label>
+                <input type="number" class="form-control" id="weight" name="weight" value="{{ health_metric.weight }}" required>
+            </div>
+            <div class="form-group">
+                <label for="height">Height (cm)</label>
+                <input type="number" class="form-control" id="height" name="height" value="{{ health_metric.height }}" required>
+            </div>
+            <div class="form-group">
+                <label for="muscle_percentage">Muscle Percentage</label>
+                <input type="number" class="form-control" id="muscle_percentage" name="muscle_percentage" value="{{ health_metric.muscle_percentage }}" required>
+            </div>
+            <div class="form-group">
+                <label for="fat_percentage">Fat Percentage</label>
+                <input type="number" class="form-control" id="fat_percentage" name="fat_percentage" value="{{ health_metric.fat_percentage }}" required>
+            </div>
+            <div class="form-group">
+                <label for="blood_pressure_systolic">Blood Pressure (Systolic)</label>
+                <input type="number" class="form-control" id="blood_pressure_systolic" name="blood_pressure_systolic" value="{{ health_metric.blood_pressure_systolic }}" required>
+            </div>
+            <div class="form-group">
+                <label for="blood_pressure_diastolic">Blood Pressure (Diastolic)</label>
+                <input type="number" class="form-control" id="blood_pressure_diastolic" name="blood_pressure_diastolic" value="{{ health_metric.blood_pressure_diastolic }}" required>
+            </div>
+            <div class="form-group">
+                <label for="resting_heart_rate">Resting Heart Rate</label>
+                <input type="number" class="form-control" id="resting_heart_rate" name="resting_heart_rate" value="{{ health_metric.resting_heart_rate }}" required>
+            </div>
+            <div class="form-group">
+                <label for="notes">Notes</label>
+                <input type="text" class="form-control" id="notes" name="notes" value="{{ health_metric.notes }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Update Health Metric</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and jQuery (required for Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainer Schedules</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        /* Add your custom styles here */
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .mt-4 {
+            margin-top: 4rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        th {
+            background-color: #343a40;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        <h1 class="mb-4">Sessions</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Trainer</th>
+                    <th>Member</th>
+                    <th>Session Date</th>
+                    <th>Session Time</th>
+                    <th>Duration</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for session in sessions %}
+                    <tr>
+                        <td>{{ session.trainer.fullname }}</td>
+                        <td>{{ session.member.fullname }}</td>
+                        <td>{{ session.session_date }}</td>
+                        <td>{{ session.session_time }}</td>
+                        <td>{{ session.duration }}</td>
+                        <td>{{ session.status }}</td>
+                        <td>
+                            
+                            <form action="{{ url_for('cancel_session', session_id=session.session_id) }}" method="POST">
+                                <button type="submit" class="btn btn-danger">Cancel</button>
+                            </form>
+                            
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

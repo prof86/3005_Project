@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Goal</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom styles */
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Update Goal</h1>
+        <form method="POST">
+            {{ csrf_token }}
+            <div class="form-group">
+                <label for="goal_type">Goal Type:</label>
+                <input type="text" class="form-control" id="goal_type" name="goal_type" value="{{ goal.goal_type }}" required>
+            </div>
+            <div class="form-group">
+                <label for="target_value">Target Value:</label>
+                <input type="number" class="form-control" id="target_value" name="target_value" value="{{ goal.target_value }}" required>
+            </div>
+            <div class="form-group">
+                <label for="start_date">Start Date:</label>
+                <input type="date" class="form-control" id="start_date" name="start_date" value="{{ goal.start_date }}" required>
+            </div>
+            <div class="form-group">
+                <label for="end_date">End Date:</label>
+                <input type="date" class="form-control" id="end_date" name="end_date" value="{{ goal.end_date }}" required>
+            </div>
+            <div class="form-group">
+                <label for="progress">Progress:</label>
+                <input type="number" class="form-control" id="progress" name="progress" value="{{ goal.progress }}" required>
+            </div>
+            <button type="submit" class="btn btn-success">Update Goal</button>
+        </form>
+    </div>
+</body>
+</html>
